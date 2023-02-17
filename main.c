@@ -22,7 +22,7 @@ void *producer(void *arg) {
     buffer[in] = i + 1;
     printf("(producer id) i:%d, p%d, buff[%d]:%d, in:%d\n",i,y,in,buffer[in],in);
     in = (in + 1) % BUF_SIZE;
-    printf("in value:%d\n",in);
+    printf("in value changed to:%d\n\n",in);
     pthread_mutex_unlock(&mutex);
     sem_post(&full);
   }
