@@ -39,6 +39,7 @@ void *consumer(void *arg) {
     out = (out + 1) % BUF_SIZE;
     pthread_mutex_unlock(&mutex);
     sem_post(&empty);
+    //printf("sum= %d+%d\n",sum,item);
     sum += item;
     //printf("sum value:%d\n",sum);
   }
