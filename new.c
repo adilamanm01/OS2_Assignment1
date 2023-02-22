@@ -23,6 +23,8 @@ pthread_mutex_t mutex;  //declarion of mutex which helps to lock and unlock the 
 void *PRODUCER() {
 
   int i = 0; //declarion of required variables
+
+  //producer logic
   do{
 
     //entry section
