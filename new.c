@@ -1,4 +1,9 @@
-
+ /*
+Name : Adil Aman Mohammed 
+CWID : A20395630
+Description : The following code is written to work with bounded buffer where we have 2 producers and 2 consumers.
+ This code will have the logic to get the result as 930 by using 20 size buffer, 30 item count.
+*/
 
 //declaration of required library
 #include <stdio.h>
