@@ -66,7 +66,7 @@ void *CONSUMER() {
     pthread_mutex_lock(&mutex); //it locks the buffer
     
     //critical section
-    item = buffer[out];
+    sum = sum+buffer[out]; //logic to store the sum value in every iteration
     out = (out + 1) % SIZE;
 
     //exit section 
@@ -76,7 +76,7 @@ void *CONSUMER() {
     //remainder section
     //int x;    //remove comment to debug
     //x=sum;    //remove comment to debug
-    sum += item; //logic to store the sum value in every iteration
+    //logic to store the sum value in every iteration
     count++;     //doing count+1 for moving into next iteration
     //printf("sum=%d+%d=%d\n",x,item,sum);   //remove comment to debug
   }
