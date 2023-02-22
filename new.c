@@ -36,7 +36,7 @@ void *PRODUCER() {
     sem_wait(&empty); //it allows to enter only if buffer is empty
     pthread_mutex_lock(&mutex); //it locks the buffer
 
-    //printf("%d\n",i);
+    //printf("%d\n",i); //debug i value
     
     //critical section
     buffer[in] = i + 1;
@@ -74,8 +74,11 @@ void *CONSUMER() {
     sem_post(&empty); //it unlocks semaphore referred by sem
     
     //remainder section
+    //int x;    //remove comment to debug
+    //x=sum;    //remove comment to debug
     sum += item; //logic to store the sum value in every iteration
     count++;     //doing count+1 for moving into next iteration
+    //printf("sum=%d+%d=%d\n",x,item,sum);   //remove comment to debug
   }
   while(count<NUM); //used do while for the following logic
 
