@@ -56,7 +56,6 @@ void *PRODUCER() {
 
 void *CONSUMER() {
   //declaration of required variables
-  int item;
   int count=0;
   
   //consumer logic
@@ -68,18 +67,16 @@ void *CONSUMER() {
     //critical section
     sum = sum+buffer[out]; //logic to store the sum value in every iteration
     out = (out + 1) % SIZE;
-
+    //printf("%d\n",sum); //remove comment to debug sum value 
+    
     //exit section 
     pthread_mutex_unlock(&mutex); //it unlocks the buffer so that next other required access
     sem_post(&empty); //it unlocks semaphore referred by sem
     
     //remainder section
-    //int x;    //remove comment to debug
-    //x=sum;    //remove comment to debug
     //logic to store the sum value in every iteration
     count++;     //doing count+1 for moving into next iteration
-    //printf("sum=%d+%d=%d\n",x,item,sum);   //remove comment to debug
-  }
+    }
   while(count<NUM); //used do while for the following logic
 
   
