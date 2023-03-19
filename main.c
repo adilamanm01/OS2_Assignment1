@@ -86,11 +86,11 @@ int main(int argc,char* argv[])
                     for(i = 0; i < k; i++)
                     {
                         //printf("%d\n",i);
-                        pthread_join(&readers[i],NULL);
+                        pthread_join(readers[i],NULL);
                     }
 
                     pthread_create(&writer[0], NULL, writer_thread,NULL);
-                    pthread_join(&writer[0],NULL);
+                    pthread_join(writer[0],NULL);
 
                     for(i = k ; i < n ; i++)
                         {
@@ -98,7 +98,7 @@ int main(int argc,char* argv[])
                         }
                     for(i = k ; i < n ; i++)
                         {
-                            pthread_join(&readers[i], NULL);
+                            pthread_join(readers[i], NULL);
                         }
 
 
