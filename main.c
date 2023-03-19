@@ -10,7 +10,7 @@ int flag=0;
 
 sem_t mutex,wrt;
 
-pthread_t readers[nmax],writer[nmax];
+
 
 void* relax()
 {
@@ -59,11 +59,15 @@ void* reader_thread(void* arg)
 int main(int argc,char* argv[])
 {
     int i,k,n;
-    int attr[10000];
     n=atoi(argv[1]);
     //printf("%d\n",n);
     k = (int) (n/2);
     //printf("%d\n",n);
+
+    sem_init(&mutex, 0, 1);
+    sem_init(&wrt, 0, 1);
+
+    pthread_t readers[nmax],writer[nmax];
 
     if(argc==2)
     {
@@ -76,7 +80,7 @@ int main(int argc,char* argv[])
                 for(i = 0; i < k; i++)
                     {
                         //printf("%d\n",i);
-                        pthread_create(&readers[i], &attr[0], reader_thread,(void*) i);
+                        pthread_create(&readers[i],NULL, reader_thread,(void*) i);
                     }
 
                     for(i = 0; i < k; i++)
@@ -85,12 +89,12 @@ int main(int argc,char* argv[])
                         pthread_join(&readers[i],NULL);
                     }
 
-                    pthread_create(&writer[0], &attr[0], writer_thread,NULL);
+                    pthread_create(&writer[0], NULL, writer_thread,NULL);
                     pthread_join(&writer[0],NULL);
 
                     for(i = k ; i < n ; i++)
                         {
-                            pthread_create(&readers[i], &attr[0], reader_thread,(void*) i);
+                            pthread_create(&readers[i], NULL, reader_thread,(void*) i);
                         }
                     for(i = k ; i < n ; i++)
                         {
